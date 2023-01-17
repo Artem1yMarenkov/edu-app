@@ -1,0 +1,15 @@
+{
+    "name": "Смотрим оценки как люди",
+    "description": "Проект 101 digital",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+        "128":"icons/strada.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [ "https://one.43edu.ru/*" ],
+            "js": [ "index.js" ]
+        }
+    ]
+}
