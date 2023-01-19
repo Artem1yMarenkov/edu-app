@@ -37,7 +37,7 @@ async function getTable(href, cookie) {
 
 function displayTable(html) { 
     document.body.insertAdjacentHTML('afterbegin', `
-        <div style="position: absolute; background: white; max-width: 80vw; max-height: 80vh; margin: auto; top: 0; left: 0; bottom: 0; right: 0;">
+        <div style="position: fixed; z-index: 1000000; background: white; max-width: 80vw; max-height: 80vh; margin: auto; top: 0; left: 0; bottom: 0; right: 0;">
             ${html}
         </div>
     `)
