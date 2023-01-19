@@ -4,7 +4,7 @@ setTimeout(() => {
     const diaryButton = document.querySelectorAll('.ux-desktop-shortcut')[3]
     const diaryOpen = document.querySelectorAll('iframe')[1]
     diaryButton.addEventListener('click', createButton)
-    if(diaryOpen) {
+    if (diaryOpen) {
         createButton()
     }
 }, 100)
@@ -15,7 +15,7 @@ const createButton = () => {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
         const previousIcon = iframeDoc.querySelector('.control-panel')
         previousIcon.insertAdjacentHTML('beforeend', `
-        <button class="ux-desktop-button" id="Посмотреть оценки как человек">Посмотреть оценки как человек v1.0</button>
+            <button class="ux-desktop-button btn btn-link btn-sm" id="Посмотреть оценки как человек">Посмотреть оценки как человек v1.0</button>
         `)
         const tableIcon = iframeDoc.querySelector('.ux-desktop-button')
         const userLink = iframeDoc.querySelectorAll('.dropdown-menu')[1]
@@ -72,8 +72,17 @@ function displayTable(html) {
             ">
                 &#10006;
             </button>
-            ${html}
-            <iframe style="display: none;" width="560" height="315" src="https://www.youtube.com/embed/4j8PXViqOGQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowfullscreen></iframe>
+                ${html}
+            <iframe 
+                style="display: none;" 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/4j8PXViqOGQ?autoplay=1" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" 
+                allowfullscreen
+            ></iframe>
         </div>
     `;
 
