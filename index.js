@@ -3,6 +3,9 @@ const url = 'https://dairy-ext.ru';
 setTimeout(() => {
     const diaryButton = document.querySelectorAll('.ux-desktop-shortcut')[3]
     diaryButton.addEventListener('click', createButton)
+    if(document.querySelectorAll('iframe')[1]) {
+        createButton()
+    }
 }, 100)
 
 const createButton = () => {
@@ -42,6 +45,7 @@ function displayTable(html) {
         background: white;
         max-width: 80vw;
         max-height: 80vh;
+        border-radius: 10px;
         margin: auto;
         top: 0;
         left: 0;
@@ -68,7 +72,7 @@ function displayTable(html) {
                 X
             </button>
             ${html}
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/uVPoGMu3LQo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowfullscreen></iframe>
+            <iframe style="display: none;" width="560" height="315" src="https://www.youtube.com/embed/uVPoGMu3LQo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowfullscreen></iframe>
         </div>
     `;
 
