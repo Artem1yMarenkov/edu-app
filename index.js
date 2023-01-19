@@ -1,5 +1,17 @@
 const url = 'https://dairy-ext.ru';
 
+function debounce(callback, delay) {
+    let timer = null;
+
+    return (...args) => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(() => callback(...args), delay);
+    }
+}
+
 setTimeout(() => {
     const diaryButton = document.querySelectorAll('.ux-desktop-shortcut')[3]
     const diaryOpen = document.querySelectorAll('iframe')[1]
@@ -20,24 +32,33 @@ const createButton = () => {
         const tableIcon = iframeDoc.querySelector('.ux-desktop-button')
         const userLink = iframeDoc.querySelectorAll('.dropdown-menu')[1]
 
-        tableIcon.addEventListener('click', () => getTable(userLink.querySelector('a').href, document.cookie))
+        tableIcon.addEventListener('click', () => {
+            getTable(userLink.querySelector('a').href, document.cookie) 
+
+        })
     }, 1000)
 }
 
-async function getTable(href, cookie) {
-    fetch(`${url}/table`, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': "application/json",
-        },
-        body: JSON.stringify({
-            "link": href,
-            "cookie": cookie
+const getTable = debounce(async (href, cookie) => {
+    try {
+        const res = await fetch(`${url}/table`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': "application/json",
+            },
+            body: JSON.stringify({
+                "link": href,
+                "cookie": cookie
+            })
         })
-    })
-    .then(res => res.json())
-    .then(json => displayTable(json.html))
-}
+    
+        const json = await res.json();
+    
+        displayTable(json ? json.html : "Данные об ученике не найдены");
+    } catch (error) {
+        displayTable("При запросе на наш сервер произошла ошибка!");
+    }
+}, 1000);
 
 function displayTable(html) { 
     const styles = `
