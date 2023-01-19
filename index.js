@@ -1,8 +1,10 @@
-const url = 'http://185.225.35.214'
+const url = 'https://dairy-ext.ru';
+
 setTimeout(() => {
     const diaryButton = document.querySelectorAll('.ux-desktop-shortcut')[3]
     diaryButton.addEventListener('click', createButton)
 }, 100)
+
 const createButton = () => {
     setTimeout(() => {
         const iframe = document.querySelectorAll('iframe')[1]
@@ -17,8 +19,9 @@ const createButton = () => {
         tableIcon.addEventListener('click', () => getTable(userLink.querySelector('a').href, document.cookie))
     }, 1000)
 }
+
 async function getTable(href, cookie) {
-    let res = await fetch(`${url}/table`, {
+    fetch(`${url}/table`, {
         method: 'POST', 
         headers: {
             'Content-Type': "application/json",
@@ -35,7 +38,7 @@ async function getTable(href, cookie) {
 function displayTable(html) { 
     document.body.insertAdjacentHTML('afterbegin', `
         <div style="position: absolute; background: white; max-width: 80vw; max-height: 80vh; margin: auto; top: 0; left: 0; bottom: 0; right: 0;">
-        ${html}
+            ${html}
         </div>
     `)
 }
